@@ -10,7 +10,7 @@
 <title>customer</title>
 </head>
 <body>
-	<h1>Customer list</h1>
+	<h1>Customer new</h1>
 	
 	<form method="post">
 	<table>
