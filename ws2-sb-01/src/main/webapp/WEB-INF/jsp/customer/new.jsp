@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 
@@ -7,33 +6,49 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
 <title>customer</title>
 </head>
 <body>
-	<h1>Customer new</h1>
+	<div class="container">
+	
+	<h1>Customer</h1>
 	
 	<form method="post">
-	<table>
+	<table class="table">
 		<thead>
 			<tr>
-				<th>column</th>
+				<th>key</th>
 				<th>value</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<th>first name</th>
-				<td><input type="text" name="firstName" /></td>
+				<td>
+					<input type="text" name="firstName" value="${customer.firstName}" />
+				</td>
 			</tr>
 			<tr>
 				<th>last name</th>
-				<td><input type="text" name="lastName" /></td>
+				<td>
+					<input type="text" name="lastName" value="${customer.lastName}" />
+				</td>
 			</tr>
 		</tbody>
 	</table>
 	
-	<input type="submit" />
-	
+	<input type="submit" class="btn btn-primary" />
 	</form>
+	
+	</div>
 </body>
 </html>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 
@@ -7,12 +6,23 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
 <title>customer</title>
 </head>
 <body>
-	<h1>Customer list</h1>
+	<div class="container">
 	
-	<table>
+	<h1>Customer</h1>
+	
+	<table class="table">
 		<thead>
 			<tr>
 				<th>id</th>
@@ -22,15 +32,17 @@
 		</thead>
 		<tbody>
 			<c:forEach var="item" items="${customerList}">
-			<tr>
-				<td>${item.id}</td>
-				<td>${item.firstName}</td>
-				<td>${item.lastName}</td>
-			</tr>
+				<tr>
+					<td>${item.id}</td>
+					<td>${item.firstName}</td>
+					<td>${item.lastName}</td>
+				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	
-	<a href="/customer/new">create new customer</a>
+	<a href="/customer/new" class="btn btn-primary">create new</a>
+	
+	</div>
 </body>
 </html>
