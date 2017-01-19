@@ -22,28 +22,38 @@
 	
 	<h1>Customer</h1>
 	
+	<form method="post">
+	<input type="hidden" name="_method" value="put" />
 	<table class="table">
 		<thead>
 			<tr>
-				<th>id</th>
-				<th>first name</th>
-				<th>last name</th>
+				<th>key</th>
+				<th>value</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="item" items="${customerList}">
-				<tr>
-					<td>
-						<a href="/customer/${item.id}">${item.id}</a>
-					</td>
-					<td>${item.firstName}</td>
-					<td>${item.lastName}</td>
-				</tr>
-			</c:forEach>
+			<tr>
+				<th>first name</th>
+				<td>
+					<input type="text" name="firstName" value="${customer.firstName}" />
+				</td>
+			</tr>
+			<tr>
+				<th>last name</th>
+				<td>
+					<input type="text" name="lastName" value="${customer.lastName}" />
+				</td>
+			</tr>
 		</tbody>
 	</table>
 	
-	<a href="/customer/new" class="btn btn-primary">create new</a>
+	<input type="submit" class="btn btn-primary" value="update" />
+	</form>
+	
+	<form method="post">
+	<input type="hidden" name="_method" value="delete" />
+	<input type="submit" class="btn btn-danger" value="delete" />
+	</form>
 	
 	</div>
 </body>
