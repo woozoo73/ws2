@@ -17,7 +17,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	private CustomerRepository customerRepository;
-	
+
 	@Autowired
 	private EmailRepository emailRepository;
 
@@ -53,11 +53,20 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public void create(Long id, Email email) {
+	public void createEmail(Long id, Email email) {
 		Email saved = emailRepository.save(email);
 
 		Customer customer = customerRepository.findOne(id);
 		customer.getEmailList().add(saved);
+	}
+
+	@Override
+	public void deleteEmail(Long id, String address) {
+		Email email = emailRepository.findOne(address);
+		Customer customer = customerRepository.findOne(id);
+		customer.getEmailList().remove(email);
+
+		emailRepository.delete(address);
 	}
 
 }

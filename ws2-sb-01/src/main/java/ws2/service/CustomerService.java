@@ -17,6 +17,8 @@ public interface CustomerService {
 
 	void delete(Long id);
 
-	void create(Long id, Email email);
+	void createEmail(Long id, Email email);
+
+	void deleteEmail(Long id, String address);
 
 }

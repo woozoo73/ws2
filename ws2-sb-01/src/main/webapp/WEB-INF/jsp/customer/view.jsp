@@ -32,6 +32,13 @@
 		var form = document.getElementById('emailForm');
 		form.submit();
 	}
+	
+	function deleteEmail(address) {
+		var form = document.getElementById('emailForm');
+		form['_method'].value = 'delete';
+		form['action'] = '/customer/${customer.id}/email/' + address;
+		form.submit();
+	}
 </script>
 
 <title>customer</title>
@@ -73,6 +80,7 @@
 	<h1>Email</h1>
 	
 	<form id="emailForm" method="post" action="/customer/${customer.id}/email">
+	<input type="hidden" name="_method" value="" />
 	<table class="table">
 		<thead>
 			<tr>
@@ -86,7 +94,9 @@
 			<tr>
 				<td>${item.address}</td>
 				<td>${item.type}</td>
-				<td></td>
+				<td>
+					<a href="javascript:deleteEmail('${item.address}');" class="btn btn-danger">delete</a>
+				</td>
 			</tr>
 			</c:forEach>
 			<tr>

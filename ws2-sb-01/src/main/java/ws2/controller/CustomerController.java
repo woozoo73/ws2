@@ -64,7 +64,14 @@ public class CustomerController {
 
 	@RequestMapping(value = "/customer/{id}/email", method = RequestMethod.POST)
 	public String createEmail(@PathVariable Long id, @ModelAttribute Email email) {
-		customerService.create(id, email);
+		customerService.createEmail(id, email);
+
+		return "redirect:/customer/" + id;
+	}
+
+	@RequestMapping(value = "/customer/{id}/email/{address}", method = RequestMethod.DELETE)
+	public String deleteEmail(@PathVariable Long id, @PathVariable String address, @ModelAttribute Email email) {
+		customerService.deleteEmail(id, address);
 
 		return "redirect:/customer/" + id;
 	}
