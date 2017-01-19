@@ -75,6 +75,7 @@
 	
 	<a href="javascript:updateCustomer();" class="btn btn-primary">update</a>
 	<a href="javascript:deleteCustomer();" class="btn btn-danger">delete</a>
+	<a href="/customer" class="btn btn-info">cancel</a>
 	</form>
 	
 	<h1>Email</h1>
