@@ -42,3 +42,7 @@ Customer : update, delete
 #####application.properties
     logging.level.org.springframework.data.mongodb.core.MongoTemplate=DEBUG
 
+[Common application properties](https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html)
+
+[Spring Data JPA](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#core.extensions.querydsl)
+
