@@ -46,7 +46,7 @@
 		</tbody>
 	</table>
 	
-	<input type="submit" class="btn btn-primary" />
+	<input type="submit" class="btn btn-success" value="create" />
 	</form>
 	
 	</div>

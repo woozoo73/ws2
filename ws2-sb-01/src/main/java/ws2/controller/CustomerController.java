@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import ws2.model.Customer;
+import ws2.model.Email;
 import ws2.service.CustomerService;
 
 @Controller
@@ -59,6 +60,13 @@ public class CustomerController {
 		customerService.delete(id);
 
 		return "redirect:/customer";
+	}
+
+	@RequestMapping(value = "/customer/{id}/email", method = RequestMethod.POST)
+	public String createEmail(@PathVariable Long id, @ModelAttribute Email email) {
+		customerService.create(id, email);
+
+		return "redirect:/customer/" + id;
 	}
 
 }
