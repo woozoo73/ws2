@@ -39,10 +39,38 @@ Customer : update, delete
 
 ### MongoDB
 
-    > mongod
-    > mongo
+    lab@lab:~$ mongo
+    MongoDB shell version: 2.6.1
+    connecting to: test
     > use ws2;
+    switched to db ws2
     > db.myEmail.insert({address:'woozoo73@bluedigm.com', type:'office'});
+    WriteResult({ "nInserted" : 1 })
+    > db.myEmail.find({address:'woozoo73@bluedigm.com'});
+    { "_id" : ObjectId("588162c7400bf8ef4a0d6cf8"), "address" : "woozoo73@bluedigm.com", "type" : "office" }
+    > db.myEmail.find({address:'woozoo73@bluedigm.com'}).pretty();
+    {
+        "_id" : ObjectId("588162c7400bf8ef4a0d6cf8"),
+        "address" : "woozoo73@bluedigm.com",
+        "type" : "office"
+    }
+    > db.myEmail.findOne({address:'woozoo73@bluedigm.com'});
+    {
+        "_id" : ObjectId("588162c7400bf8ef4a0d6cf8"),
+        "address" : "woozoo73@bluedigm.com",
+        "type" : "office"
+    }
+    > db.myEmail.findOne("588162c7400bf8ef4a0d6cf8");
+    null
+    > db.myEmail.findOne({_id:"588162c7400bf8ef4a0d6cf8"});
+    null
+    > db.myEmail.findOne({_id:ObjectId("588162c7400bf8ef4a0d6cf8")});
+    {
+        "_id" : ObjectId("588162c7400bf8ef4a0d6cf8"),
+        "address" : "woozoo73@bluedigm.com",
+        "type" : "office"
+    }
+
 
 #####application.properties
     logging.level.org.springframework.data.mongodb.core.MongoTemplate=DEBUG
