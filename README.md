@@ -39,6 +39,11 @@ Customer : update, delete
 
 ### MongoDB
 
+    > mongod
+    > mongo
+    > use ws2;
+    > db.myEmail.insert({address:'woozoo73@bluedigm.com', type:'office'});
+
 #####application.properties
     logging.level.org.springframework.data.mongodb.core.MongoTemplate=DEBUG
 
