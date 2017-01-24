@@ -44,7 +44,7 @@ public class CustomerServiceImpl implements CustomerService {
 		saved.setFirstName(customer.getFirstName());
 		saved.setLastName(customer.getLastName());
 
-		customerRepository.save(saved);
+	//	customerRepository.save(saved);
 	}
 
 	@Override
