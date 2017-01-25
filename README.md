@@ -81,3 +81,33 @@ Customer : update, delete
 
 [Restful API Design] (http://www.slideshare.net/apigee/restful-api-design-second-edition?qid=96e0890f-e162-4625-9861-b1c30fc034ba)
 
+
+    package hello;
+
+    import java.util.ArrayList;
+    import java.util.List;
+
+    import org.springframework.security.core.GrantedAuthority;
+    import org.springframework.security.core.authority.SimpleGrantedAuthority;
+    import org.springframework.security.core.userdetails.User;
+    import org.springframework.security.core.userdetails.UserDetails;
+    import org.springframework.security.core.userdetails.UsernameNotFoundException;
+    import org.springframework.stereotype.Service;
+
+    @Service
+    public class UserServiceImpl implements UserService {
+
+        @Override
+        public UserDetails loadUserByUsername(String paramString) throws UsernameNotFoundException {
+            if ("user".equals(paramString)) {
+                List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+                GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_USER");
+                authorities.add(authority);
+
+                return new User("user", "password", authorities);
+            }
+
+            throw new UsernameNotFoundException("Not found user");
+        }
+
+    }
