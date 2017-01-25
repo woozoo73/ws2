@@ -81,6 +81,7 @@ Customer : update, delete
 
 [Restful API Design] (http://www.slideshare.net/apigee/restful-api-design-second-edition?qid=96e0890f-e162-4625-9861-b1c30fc034ba)
 
+[UserService < UserDetails service]
 
     package hello;
 
@@ -111,3 +112,8 @@ Customer : update, delete
         }
 
     }
+
+[Customize security]
+
+http://stackoverflow.com/questions/31524426/securityconfig-2-success-url-for-different-roles
+
