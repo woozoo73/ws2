@@ -20,11 +20,11 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 
 	@Override
-	public UserDetails loadUserByUsername(String paramString) throws UsernameNotFoundException {
-		User user = userRepository.findOne(paramString);
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		User user = userRepository.findOne(username);
 
 		if (user == null) {
-			throw new UsernameNotFoundException("Not found user");
+			throw new UsernameNotFoundException("Not found user: username='" + username + "'");
 		}
 
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
