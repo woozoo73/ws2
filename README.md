@@ -81,33 +81,53 @@ Customer : update, delete
 
 [Restful API Design] (http://www.slideshare.net/apigee/restful-api-design-second-edition?qid=96e0890f-e162-4625-9861-b1c30fc034ba)
 
+[UserService < UserDetails service]
 
-    package hello;
+package ws2.service;
 
-    import java.util.ArrayList;
-    import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
-    import org.springframework.security.core.GrantedAuthority;
-    import org.springframework.security.core.authority.SimpleGrantedAuthority;
-    import org.springframework.security.core.userdetails.User;
-    import org.springframework.security.core.userdetails.UserDetails;
-    import org.springframework.security.core.userdetails.UsernameNotFoundException;
-    import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import ws2.model.User;
+import ws2.repository.UserRepository;
 
     @Service
     public class UserServiceImpl implements UserService {
 
+        @Autowired
+        private UserRepository userRepository;
+
         @Override
         public UserDetails loadUserByUsername(String paramString) throws UsernameNotFoundException {
-            if ("user".equals(paramString)) {
-                List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-                GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_USER");
-                authorities.add(authority);
+            User user = userRepository.findOne(paramString);
 
-                return new User("user", "password", authorities);
+            if (user == null) {
+                throw new UsernameNotFoundException("Not found user");
             }
 
-            throw new UsernameNotFoundException("Not found user");
+            List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+            GrantedAuthority authority = new SimpleGrantedAuthority(user.getRole());
+            authorities.add(authority);
+
+            return new org.springframework.security.core.userdetails.User(user.getId(), user.getPassword(), authorities);
+        }
+
+        @Override
+        public void create(User user) {
+            userRepository.save(user);
         }
 
     }
+
+
+[Customize security]
+
+http://stackoverflow.com/questions/31524426/securityconfig-2-success-url-for-different-roles
+
