@@ -98,6 +98,9 @@ public class CustomerController {
 		creator.setId(principal.getName());
 		customer.setCreator(creator);
 
+		// UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		// log.debug("userDetails={}", userDetails);
+
 		customerService.update(customer);
 
 		return "redirect:/customer";
