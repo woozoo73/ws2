@@ -81,6 +81,8 @@ Customer : update, delete
 
 [Restful API Design] (http://www.slideshare.net/apigee/restful-api-design-second-edition?qid=96e0890f-e162-4625-9861-b1c30fc034ba)
 
+## 2017.01.25
+
 [UserService < UserDetails service]
 
     package ws2.service;
@@ -130,4 +132,110 @@ Customer : update, delete
 [Customize security]
 
 http://stackoverflow.com/questions/31524426/securityconfig-2-success-url-for-different-roles
+
+## 2017.02.02
+
+[CustomerController]
+
+    @Controller
+    public class CustomerController {
+
+        private static final Logger log = LoggerFactory.getLogger(CustomerController.class);
+
+        @Autowired
+        private CustomerService customerService;
+
+        @RequestMapping(value = "/customer", method = RequestMethod.GET)
+        public String list(Model model) {
+            List<Customer> customerList = customerService.list();
+            model.addAttribute("customerList", customerList);
+
+            return "customer/list";
+        }
+
+        @RequestMapping(value = "/customer/new", method = RequestMethod.GET)
+        public String form(@ModelAttribute Customer customer, Model model) {
+            List<Type> typeList = Arrays.asList(Customer.Type.values());
+            model.addAttribute("typeList", typeList);
+
+            return "customer/new";
+        }
+
+        @RequestMapping(value = "/customer/new", method = RequestMethod.POST)
+        public String create(@Valid Customer customer, BindingResult bindingResult, RedirectAttributes redirectAttributes,
+                Principal principal) {
+            if (bindingResult.hasErrors()) {
+                log.debug("bindingResult={}", bindingResult);
+
+                redirectAttributes.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "customer", bindingResult);
+                redirectAttributes.addFlashAttribute("customer", customer);
+
+                return "redirect:customer/new";
+            }
+
+            User creator = new User();
+            creator.setId(principal.getName());
+            customer.setCreator(creator);
+
+            customerService.create(customer);
+
+            return "redirect:/customer";
+        }
+
+        @RequestMapping(value = "/customer/{id}", method = RequestMethod.GET)
+        public String view(@PathVariable Long id, Model model) {
+            if (!model.containsAttribute("customer")) {
+                Customer customer = customerService.read(id);
+                model.addAttribute("customer", customer);
+            }
+
+            List<Type> typeList = Arrays.asList(Customer.Type.values());
+            model.addAttribute("typeList", typeList);
+
+            return "customer/view";
+        }
+
+        @RequestMapping(value = "/customer/{id}", method = RequestMethod.PUT)
+        public String update(@PathVariable Long id, @Valid Customer customer, BindingResult bindingResult,
+                RedirectAttributes redirectAttributes, Principal principal) {
+            if (bindingResult.hasErrors()) {
+                log.debug("bindingResult={}", bindingResult);
+
+                redirectAttributes.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "customer", bindingResult);
+                redirectAttributes.addFlashAttribute("customer", customer);
+
+                return "redirect:/customer/{id}";
+            }
+
+            User creator = new User();
+            creator.setId(principal.getName());
+            customer.setCreator(creator);
+
+            customerService.update(customer);
+
+            return "redirect:/customer";
+        }
+
+        @RequestMapping(value = "/customer/{id}", method = RequestMethod.DELETE)
+        public String delete(@PathVariable Long id) {
+            customerService.delete(id);
+
+            return "redirect:/customer";
+        }
+
+        @RequestMapping(value = "/customer/{id}/email", method = RequestMethod.POST)
+        public String createEmail(@PathVariable Long id, @ModelAttribute Email email) {
+            customerService.createEmail(id, email);
+
+            return "redirect:/customer/" + id;
+        }
+
+        @RequestMapping(value = "/customer/{id}/email/{address}", method = RequestMethod.DELETE)
+        public String deleteEmail(@PathVariable Long id, @PathVariable String address, @ModelAttribute Email email) {
+            customerService.deleteEmail(id, address);
+
+            return "redirect:/customer/" + id;
+        }
+
+    }
 
