@@ -334,3 +334,12 @@ http://stackoverflow.com/questions/31524426/securityconfig-2-success-url-for-dif
         <a href="javascript:deleteCustomer();" class="btn btn-danger">delete</a>
         <a href="/customer" class="btn btn-info">cancel</a>
         </form:form>
+
+[MEAN stack tutorial] (https://github.com/michaelcheng429/meanstacktutorial)
+
+[모두를 위한 머신러닝/딥러닝 강의] (http://hunkim.github.io/ml/)
+
+[TensorFlow 예제] (https://github.com/FuZer/Study_TensorFlow/tree/old_version)
+
+[Codecademy] (https://www.codecademy.com)
+
