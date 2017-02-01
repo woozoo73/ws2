@@ -245,3 +245,92 @@ http://stackoverflow.com/questions/31524426/securityconfig-2-success-url-for-dif
         ...
 
     }
+
+[new.jsp] (https://github.com/woozoo73/ws2/blob/master/ws2-sb-01/src/main/webapp/WEB-INF/jsp/customer/new.jsp)
+
+    <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
+        <form:form commandName="customer">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>key</th>
+                    <th>value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>first name</th>
+                    <td>
+                        <form:input path="firstName" />
+                        <form:errors path="firstName" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>last name</th>
+                    <td>
+                        <form:input path="lastName" />
+                        <form:errors path="lastName" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>type</th>
+                    <td>
+                        <form:select path="type">
+                            <option />
+                            <form:options />
+                        </form:select>
+                        <form:errors path="type" />
+                    </td>				
+                </tr>
+            </tbody>
+        </table>
+
+        <input type="submit" class="btn btn-success" value="create" />
+        </form:form>
+
+[view.jsp] (https://github.com/woozoo73/ws2/blob/master/ws2-sb-01/src/main/webapp/WEB-INF/jsp/customer/view.jsp)
+
+    <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
+        <form:form commandName="customer" id="customerForm">
+        <input type="hidden" name="_method" value="" />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>key</th>
+                    <th>value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>first name</th>
+                    <td>
+                        <form:input path="firstName" />
+                        <form:errors path="firstName" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>last name</th>
+                    <td>
+                        <form:input path="lastName" />
+                        <form:errors path="lastName" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>type</th>
+                    <td>
+                        <form:select path="type">
+                            <option />
+                            <form:options />
+                        </form:select>
+                        <form:errors path="type" />
+                    </td>				
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="javascript:updateCustomer();" class="btn btn-primary">update</a>
+        <a href="javascript:deleteCustomer();" class="btn btn-danger">delete</a>
+        <a href="/customer" class="btn btn-info">cancel</a>
+        </form:form>
