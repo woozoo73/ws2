@@ -142,16 +142,7 @@ http://stackoverflow.com/questions/31524426/securityconfig-2-success-url-for-dif
 
         private static final Logger log = LoggerFactory.getLogger(CustomerController.class);
 
-        @Autowired
-        private CustomerService customerService;
-
-        @RequestMapping(value = "/customer", method = RequestMethod.GET)
-        public String list(Model model) {
-            List<Customer> customerList = customerService.list();
-            model.addAttribute("customerList", customerList);
-
-            return "customer/list";
-        }
+        ...
 
         @RequestMapping(value = "/customer/new", method = RequestMethod.GET)
         public String form(@ModelAttribute Customer customer, Model model) {
@@ -216,26 +207,7 @@ http://stackoverflow.com/questions/31524426/securityconfig-2-success-url-for-dif
             return "redirect:/customer";
         }
 
-        @RequestMapping(value = "/customer/{id}", method = RequestMethod.DELETE)
-        public String delete(@PathVariable Long id) {
-            customerService.delete(id);
-
-            return "redirect:/customer";
-        }
-
-        @RequestMapping(value = "/customer/{id}/email", method = RequestMethod.POST)
-        public String createEmail(@PathVariable Long id, @ModelAttribute Email email) {
-            customerService.createEmail(id, email);
-
-            return "redirect:/customer/" + id;
-        }
-
-        @RequestMapping(value = "/customer/{id}/email/{address}", method = RequestMethod.DELETE)
-        public String deleteEmail(@PathVariable Long id, @PathVariable String address, @ModelAttribute Email email) {
-            customerService.deleteEmail(id, address);
-
-            return "redirect:/customer/" + id;
-        }
+        ...
 
     }
 
