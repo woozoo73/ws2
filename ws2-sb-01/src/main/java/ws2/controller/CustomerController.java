@@ -2,9 +2,14 @@ package ws2.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +21,8 @@ import ws2.service.CustomerService;
 
 @Controller
 public class CustomerController {
+
+	private static final Logger log = LoggerFactory.getLogger(CustomerController.class);
 
 	@Autowired
 	private CustomerService customerService;
@@ -34,7 +41,13 @@ public class CustomerController {
 	}
 
 	@RequestMapping(value = "/customer/new", method = RequestMethod.POST)
-	public String create(@ModelAttribute Customer customer) {
+	public String create(@Valid Customer customer, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			log.debug("bindingResult={}", bindingResult);
+
+			return "customer/new";
+		}
+
 		customerService.create(customer);
 
 		return "redirect:/customer";

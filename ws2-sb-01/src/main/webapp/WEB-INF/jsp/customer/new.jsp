@@ -23,7 +23,7 @@
 	
 	<h1>Customer</h1>
 	
-	<form:form>
+	<form:form commandName="customer">
 	<table class="table">
 		<thead>
 			<tr>
@@ -35,13 +35,15 @@
 			<tr>
 				<th>first name</th>
 				<td>
-					<input type="text" name="firstName" value="${customer.firstName}" />
+					<form:input path="firstName" />
+					<form:errors path="firstName" />
 				</td>
 			</tr>
 			<tr>
 				<th>last name</th>
 				<td>
-					<input type="text" name="lastName" value="${customer.lastName}" />
+					<form:input path="lastName" />
+					<form:errors path="lastName" />
 				</td>
 			</tr>
 		</tbody>
