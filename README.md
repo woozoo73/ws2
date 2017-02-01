@@ -135,7 +135,7 @@ http://stackoverflow.com/questions/31524426/securityconfig-2-success-url-for-dif
 ## 2017.02.02
 
 
-[Customer]
+[Customer] (https://github.com/woozoo73/ws2/blob/master/ws2-sb-01/src/main/java/ws2/model/Customer.java)
 
     @Entity
     public class Customer {
@@ -170,7 +170,7 @@ http://stackoverflow.com/questions/31524426/securityconfig-2-success-url-for-dif
 
     }
 
-[CustomerController]
+[CustomerController] (https://github.com/woozoo73/ws2/blob/master/ws2-sb-01/src/main/java/ws2/controller/CustomerController.java)
 
     @Controller
     public class CustomerController {
