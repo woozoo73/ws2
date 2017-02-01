@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -48,7 +49,7 @@
 	
 	<h1>Customer</h1>
 	
-	<form id="customerForm" method="post">
+	<form:form commandName="customer" id="customerForm">
 	<input type="hidden" name="_method" value="" />
 	<table class="table">
 		<thead>
@@ -61,14 +62,26 @@
 			<tr>
 				<th>first name</th>
 				<td>
-					<input type="text" name="firstName" value="${customer.firstName}" />
+					<form:input path="firstName" />
+					<form:errors path="firstName" />
 				</td>
 			</tr>
 			<tr>
 				<th>last name</th>
 				<td>
-					<input type="text" name="lastName" value="${customer.lastName}" />
+					<form:input path="lastName" />
+					<form:errors path="lastName" />
 				</td>
+			</tr>
+			<tr>
+				<th>type</th>
+				<td>
+					<form:select path="type">
+						<option />
+						<form:options />
+					</form:select>
+					<form:errors path="type" />
+				</td>				
 			</tr>
 		</tbody>
 	</table>
@@ -76,7 +89,7 @@
 	<a href="javascript:updateCustomer();" class="btn btn-primary">update</a>
 	<a href="javascript:deleteCustomer();" class="btn btn-danger">delete</a>
 	<a href="/customer" class="btn btn-info">cancel</a>
-	</form>
+	</form:form>
 	
 	<h1>Email</h1>
 	

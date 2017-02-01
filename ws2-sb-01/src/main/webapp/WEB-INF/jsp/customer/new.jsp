@@ -46,6 +46,16 @@
 					<form:errors path="lastName" />
 				</td>
 			</tr>
+			<tr>
+				<th>type</th>
+				<td>
+					<form:select path="type">
+						<option />
+						<form:options />
+					</form:select>
+					<form:errors path="type" />
+				</td>				
+			</tr>
 		</tbody>
 	</table>
 	

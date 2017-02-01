@@ -43,8 +43,8 @@ public class CustomerServiceImpl implements CustomerService {
 		Customer saved = customerRepository.findOne(customer.getId());
 		saved.setFirstName(customer.getFirstName());
 		saved.setLastName(customer.getLastName());
-
-	//	customerRepository.save(saved);
+		saved.setType(customer.getType());
+		saved.setCreator(customer.getCreator());
 	}
 
 	@Override

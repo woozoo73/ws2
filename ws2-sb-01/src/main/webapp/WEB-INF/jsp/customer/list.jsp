@@ -28,6 +28,8 @@
 				<th>id</th>
 				<th>first name</th>
 				<th>last name</th>
+				<th>type</th>
+				<th>creator</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -38,6 +40,8 @@
 					</td>
 					<td>${item.firstName}</td>
 					<td>${item.lastName}</td>
+					<td>${item.type}</td>
+					<td>${item.creator.id}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
