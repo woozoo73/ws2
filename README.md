@@ -128,12 +128,47 @@ Customer : update, delete
 
     }
 
-
 [Customize security]
 
 http://stackoverflow.com/questions/31524426/securityconfig-2-success-url-for-different-roles
 
 ## 2017.02.02
+
+
+[Customer]
+
+    @Entity
+    public class Customer {
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
+        private Long id;
+
+        @NotNull
+        @Size(min = 2, max = 30)
+        private String firstName;
+
+        @NotNull
+        @Size(min = 2, max = 30)
+        private String lastName;
+
+        @NotNull
+        @Enumerated(EnumType.STRING)
+        private Type type;
+
+        @OneToMany
+        private List<Email> emailList;
+
+        @ManyToOne
+        private User creator;
+
+        ...
+        
+        public enum Type {
+            Gold, Silver, Bronze,
+        };
+
+    }
 
 [CustomerController]
 
@@ -210,4 +245,3 @@ http://stackoverflow.com/questions/31524426/securityconfig-2-success-url-for-dif
         ...
 
     }
-
