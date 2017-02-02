@@ -106,7 +106,11 @@ public class Customer {
 	}
 
 	public enum Type {
-		Gold, Silver, Bronze,
+		Gold, Silver, Bronze;
+
+		public String getValue() {
+			return toString();
+		}
 	};
 
 }

@@ -78,7 +78,7 @@
 				<td>
 					<form:select path="type">
 						<option />
-						<form:options />
+						<form:options items="${typeList}" itemLabel="value" itemValue="value" />
 					</form:select>
 					<form:errors path="type" />
 				</td>				
