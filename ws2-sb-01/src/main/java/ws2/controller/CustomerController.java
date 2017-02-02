@@ -41,7 +41,12 @@ public class CustomerController {
 	}
 
 	@RequestMapping(value = "/customer/new", method = RequestMethod.GET)
-	public String form(@ModelAttribute Customer customer, Model model) {
+	public String form(Model model) {
+		if (!model.containsAttribute("customer")) {
+			Customer customer = new Customer();
+			model.addAttribute("customer", customer);
+		}
+
 		List<Type> typeList = Arrays.asList(Customer.Type.values());
 		model.addAttribute("typeList", typeList);
 
@@ -57,7 +62,7 @@ public class CustomerController {
 			redirectAttributes.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "customer", bindingResult);
 			redirectAttributes.addFlashAttribute("customer", customer);
 
-			return "redirect:customer/new";
+			return "redirect:/customer/new";
 		}
 
 		User creator = new User();
