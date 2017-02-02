@@ -2,11 +2,14 @@ package ws2.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Email {
 
 	@Id
+	@Size(min = 2, max = 255)
+	@org.hibernate.validator.constraints.Email
 	private String address;
 
 	private String type;

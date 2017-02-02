@@ -12,10 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ws2.model.Customer;
@@ -80,6 +80,10 @@ public class CustomerController {
 			Customer customer = customerService.read(id);
 			model.addAttribute("customer", customer);
 		}
+		if (!model.containsAttribute("email")) {
+			Email email = new Email();
+			model.addAttribute("email", email);
+		}
 
 		List<Type> typeList = Arrays.asList(Customer.Type.values());
 		model.addAttribute("typeList", typeList);
@@ -119,17 +123,32 @@ public class CustomerController {
 	}
 
 	@RequestMapping(value = "/customer/{id}/email", method = RequestMethod.POST)
-	public String createEmail(@PathVariable Long id, @ModelAttribute Email email) {
+	public String createEmail(@PathVariable Long id, @Valid Email email, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+		if (!bindingResult.hasFieldErrors("address")) {
+			if (customerService.existEmailAddress(email.getAddress())) {
+				bindingResult.rejectValue("address", "duplicate", "Already exist address.");
+			}
+		}
+
+		if (bindingResult.hasErrors()) {
+			log.debug("bindingResult={}", bindingResult);
+
+			redirectAttributes.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "email", bindingResult);
+			redirectAttributes.addFlashAttribute("email", email);
+
+			return "redirect:/customer/{id}";
+		}
+
 		customerService.createEmail(id, email);
 
-		return "redirect:/customer/" + id;
+		return "redirect:/customer/{id}";
 	}
 
-	@RequestMapping(value = "/customer/{id}/email/{address}", method = RequestMethod.DELETE)
-	public String deleteEmail(@PathVariable Long id, @PathVariable String address, @ModelAttribute Email email) {
+	@RequestMapping(value = "/customer/{id}/email", method = RequestMethod.DELETE)
+	public String deleteEmail(@PathVariable Long id, @RequestParam(name = "deleteAddress") String address) {
 		customerService.deleteEmail(id, address);
 
-		return "redirect:/customer/" + id;
+		return "redirect:/customer/{id}";
 	}
 
 }

@@ -8,4 +8,6 @@ import ws2.model.Email;
 @Repository
 public interface EmailRepository extends JpaRepository<Email, String> {
 
+	Email findByAddress(String address);
+
 }

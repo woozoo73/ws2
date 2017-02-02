@@ -21,4 +21,6 @@ public interface CustomerService {
 
 	void deleteEmail(Long id, String address);
 
+	boolean existEmailAddress(String address);
+
 }

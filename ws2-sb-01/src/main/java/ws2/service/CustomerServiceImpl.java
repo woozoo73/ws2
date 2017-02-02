@@ -69,4 +69,11 @@ public class CustomerServiceImpl implements CustomerService {
 		emailRepository.delete(address);
 	}
 
+	@Override
+    public boolean existEmailAddress(String address) {
+		Email email = emailRepository.findByAddress(address);
+
+		return email != null;
+    }
+
 }

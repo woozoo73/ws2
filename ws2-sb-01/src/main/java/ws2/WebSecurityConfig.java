@@ -22,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .logout()
                 .permitAll();
                 
-         http.csrf().disable();
+         // http.csrf().disable();
     }
 
 //	@Autowired
