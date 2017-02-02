@@ -341,6 +341,8 @@ http://stackoverflow.com/questions/31524426/securityconfig-2-success-url-for-dif
 
 [어려운 것을 쉽게 배우는 방법 : 슈퍼 파워를 장착하기 위한 3단계 학습법] (http://www.moreagile.net/2016/02/learning-new-stuff.html)
 
+[MEAN Stack RESTful API Tutorial (1/5) - Using MongoDB, Express, Angular JS, and Node JS Together] (https://www.youtube.com/watch?v=kHV7gOHvNdk)
+
 [MEAN stack tutorial] (https://github.com/michaelcheng429/meanstacktutorial)
 
 [모두를 위한 머신러닝/딥러닝 강의] (http://hunkim.github.io/ml/)
