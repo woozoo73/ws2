@@ -335,6 +335,8 @@ http://stackoverflow.com/questions/31524426/securityconfig-2-success-url-for-dif
         <a href="/customer" class="btn btn-info">cancel</a>
         </form:form>
 
+[어려운 것을 쉽게 배우는 방법 : 슈퍼 파워를 장착하기 위한 3단계 학습법] (http://www.moreagile.net/2016/02/learning-new-stuff.html)
+
 [MEAN stack tutorial] (https://github.com/michaelcheng429/meanstacktutorial)
 
 [모두를 위한 머신러닝/딥러닝 강의] (http://hunkim.github.io/ml/)
@@ -342,4 +344,3 @@ http://stackoverflow.com/questions/31524426/securityconfig-2-success-url-for-dif
 [TensorFlow 예제] (https://github.com/FuZer/Study_TensorFlow/tree/old_version)
 
 [Codecademy] (https://www.codecademy.com)
-
